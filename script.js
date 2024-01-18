@@ -17,6 +17,8 @@ let repositoriesPerPage = perPageSelect.value;
 let totalCount = 0;
 let reposDataArray = [];
 
+let apiUrl = '';
+let repoUrl = '';
 
 async function fetchPersonalData(apiUrl) {
   const apiResponse = await fetch(apiUrl);
@@ -29,8 +31,11 @@ async function fetchPersonalData(apiUrl) {
   profileLocation[0].textContent = apiData.location;
 }
 
-async function fetchData(apiUrl, repoUrl) {
+async function fetchData() {
+  apiUrl = `https://api.github.com/users/${username.value}`;
+  repoUrl = `https://api.github.com/users/${username.value}/repos`;
   const fetchUrl = `${apiUrl}/repos?page=${currentPage}&per_page=${perPageSelect.value}`;
+  console.log(fetchUrl);
 
   // Show loader
   repositoriesContainer.innerHTML = 'Loading...';
@@ -103,15 +108,18 @@ function displayRepositories(repositoriesData, totalCount) {
 
   paginationContainer.innerHTML = '';
   for (let i = 1; i <= totalPages; i++) {
-    const pageButton = document.createElement('button');
-    pageButton.classList.add('btn', 'btn-sm', 'btn-outline-primary', 'mx-1');
-    pageButton.textContent = i;
+    const paginationItem = document.createElement('li');
+    paginationItem.classList.add('page-item');
     if (i === currentPage) {
-      pageButton.classList.add('active');
-    } else {
-      pageButton.addEventListener('click', () => changePage(i));
+      paginationItem.classList.add('active');
     }
-    paginationContainer.appendChild(pageButton);
+    const paginationLink = document.createElement('a');
+    paginationLink.classList.add('page-link');
+    paginationLink.href = '#';
+    paginationLink.textContent = i;
+    paginationLink.onclick = () => changePage(i);
+    paginationItem.appendChild(paginationLink);
+    paginationContainer.appendChild(paginationItem);
   }
 }
 
@@ -121,18 +129,21 @@ async function fetchSearchData() {
     fetchData();
     return;
   }
+
+  // Check if reposDataArray is empty, fetch data if needed
+  if (reposDataArray.length === 0) {
+    await fetchData();
+  }
+
   const filteredRepositories = reposDataArray.filter((repo) => {
     return (
       repo.name.toLowerCase().includes(searchString)
     );
   });
-  console.log(filteredRepositories)
   displayRepositories(filteredRepositories, totalCount);
 }
 
 function fetchUser() {
-  const apiUrl = `https://api.github.com/users/${username.value}`;
-  const repoUrl = `https://api.github.com/users/${username.value}/repos`;
-  fetchData(apiUrl, repoUrl);
+  fetchData();
   fetchPersonalData(apiUrl);
 }
