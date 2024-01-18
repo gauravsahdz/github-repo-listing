@@ -1,0 +1,99 @@
+.searchUser {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+#username {
+  margin: 0;
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+.profile-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.profile-bio {
+  margin: 5px 0;
+}
+
+.profile-location-icon {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+.location {
+  margin: 0;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+}
+.profile-location,
+.profile-followers {
+  margin: 0;
+}
+.filter {
+  display: flex;
+  align-items: center;
+}
+
+.form-group {
+  margin-right: 10px;
+}
+
+#search {
+  flex-grow: 1;
+}
+
+#repositories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  width: 100%;
+  max-width: 450px;
+  margin: 0.5rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.topics-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.topic-item {
+  margin: 0.25rem;
+  padding: 0.5rem;
+  background-color: #428bca;
+  color: white;
+  border-radius: 0.25rem;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}

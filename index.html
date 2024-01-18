@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Github Repositories</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="searchUser">
+        <h1>Github Repositories</h1>
+        <div class="searchUser">
+          <input
+            type="text"
+            id="username"
+            placeholder="username, eg: johnpapa"
+          />
+          <button class="btn btn-primary" onclick="fetchUser()">Search</button>
+        </div>
+      </div>
+      <div class="profile-container">
+        <img
+          class="profile-image"
+          src="github.png"
+          alt="github"
+          width="100"
+          height="100"
+        />
+        <div class="profile-info">
+          <h1 class="profile-name"></h1>
+          <p class="profile-bio"></p>
+          <div class="location">
+            <img
+              class="profile-location-icon"
+              src="location-pin.png"
+              alt="location"
+              width="20"
+              height="20"
+            />
+            <p class="profile-location"></p>
+          </div>
+          <div class="location">
+            <img
+              class="profile-location-icon"
+              src="followers.png"
+              alt="followers"
+              width="20"
+              height="20"
+            />
+            <p class="profile-followers"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter">
+        <div class="form-group">
+          <label for="perPage">Repositories per page: </label>
+          <select class="form-control" id="perPage" onchange="fetchData()">
+            <option value="10">10</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="search">Search:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="search"
+            oninput="fetchSearchData()"
+          />
+        </div>
+      </div>
+
+      <div id="repositories" class="mt-4"></div>
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination" id="pagination"></ul>
+      </nav>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
